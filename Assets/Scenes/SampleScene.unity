@@ -316,6 +316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0134d21c1ba86bd4d95b5847c435507e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  path: Assets/Content/Scenery/Act1.xml
+  quotes: []
   TextBox: {fileID: 438373625}
 --- !u!20 &519420031
 Camera:

@@ -11,7 +11,7 @@ using TMPro;
     english
 };*/
 
-public class ReadFile : MonoBehaviour
+public class Text : MonoBehaviour
 {
     public string path;
     //public Language language;
