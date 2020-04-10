@@ -1,3 +1,9 @@
-.log
-.meta
-.cache
+*.log
+*.meta
+*.cache
+*.sln
+Library/
+Logs/
+Temp/
+obj/
+.vs/
