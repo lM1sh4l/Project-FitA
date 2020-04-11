@@ -9,7 +9,7 @@ public class Character
     public string name;
     public Color color;
 
-    public AnimationState[] states;
+    public List<AnimationState> states;
 
     private Character() { }
 }
@@ -19,5 +19,5 @@ public class AnimationState
 {
     [HideInInspector]
     public string name;
-    public Texture2D sprite;
+    public Sprite sprite;
 }

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59953128d4b614d48af8c8f01e59d36c, type: 3}
+  m_Name: Container
+  m_EditorClassIdentifier: 
+  characters:
+  - name: Spider
+    color: {r: 0.61960787, g: 0.16078432, b: 0.1137255, a: 1}
+    states:
+    - name: angry
+      sprite: {fileID: 21300000, guid: 1179c116cf9a39a4fb6577302f6abd26, type: 3}
+    - name: happy
+      sprite: {fileID: 21300000, guid: 3b479077e4d559c4a83da336ab75e1a3, type: 3}
+    - name: normal
+      sprite: {fileID: 21300000, guid: 2292f96ea7626df4bb5df57b4741870a, type: 3}
+    - name: sad
+      sprite: {fileID: 21300000, guid: bda3ac446ed22d64995401c60a257204, type: 3}
+    - name: scared
+      sprite: {fileID: 21300000, guid: 15e8aec3654d67b43a153432781f43b4, type: 3}
+    - name: shy
+      sprite: {fileID: 21300000, guid: 7375b10918650ac48a4e161790c95def, type: 3}
+    - name: tired
+      sprite: {fileID: 21300000, guid: d13b5afaa06f67046bb0e96429f42c8c, type: 3}
+  actions: []
