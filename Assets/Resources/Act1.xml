@@ -1,11 +1,15 @@
 ﻿<?xml version="1.0"?>
   <languages>
     
-    <object name = "russian"> 
+    <object name = "russian">
       я пидарас
-      [continue]
+      [continue][delay=1]
+      [char( S pider  ,x0 ,z 0, y0)]
       или ты
+      [char(Spider, s0.02, ihappy, m1, aLinear)]
+      [delay=5]
       хочу пива
+      [char(Spider,f, x-.5,v0.01,tEaseInOut, itired)]
     </object>
     
     <object name = "english"> 
