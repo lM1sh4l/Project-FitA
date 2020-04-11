@@ -1,18 +1,44 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System.IO;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 
-
+/*public enum Language
+{
+    russian,
+    english
+};*/
 
 public class Text : MonoBehaviour
 {
-
+    public string path;
+    //public Language language;
+    [TextArea(1, 10)]
+    public List<string> quotes;
     public TextMeshProUGUI TextBox;
-    string[] arry = { "HI, Player", "I'm Sally" };
-    int i;
+    string[] text = new string[10];
+    int i, t;
+
+    void Awake()
+    {
+        if (File.Exists(path))
+        {
+            string[] lines = File.ReadAllLines(path);
+            foreach (var v in lines)
+            {
+                if (v != "")
+                {
+                    quotes.Add(v);
+                    text[i] = v;
+                    i++;
+
+                }
+            }
+        }
+
+    }
 
 
     void Update()
@@ -27,11 +53,16 @@ public class Text : MonoBehaviour
 
     IEnumerator ShowText()
     {
-        foreach (char letter in arry[i])
+        if (t < i)
         {
-            TextBox.text += letter;
-            yield return new WaitForSeconds(0.05f);
+            foreach (char letter in text[t])
+            {
+                TextBox.text += letter;
+                yield return new WaitForSeconds(0.02f);
+
+            }
+
         }
-        i++;
+        t++;
     }
 }
