@@ -1,16 +1,16 @@
-﻿using UnityEngine;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Collections;
+using UnityEngine;
 using TMPro;
 
 public class TextWriter : MonoBehaviour
 {
-    public TextMeshProUGUI TextBox;
+    public TextMeshProUGUI TextBox, Teller;
 
     FileReader fr;
     ImageManipulator im;
-
+    [SerializeField]
     int i;
     bool clear = true, delayed, writing, auto;
     float delayTimer;
@@ -21,6 +21,7 @@ public class TextWriter : MonoBehaviour
         im = GetComponent<ImageManipulator>();
 
         TextBox.text = "";
+        Teller.text = "";
         fr.Read();
         im.Initialize();
     }
@@ -72,6 +73,20 @@ public class TextWriter : MonoBehaviour
             else if (s.Contains("char"))
             {
                 im.Manipulate(s);
+            }
+            else if (s.Contains("talker"))
+            {
+                string[] split = s.Replace("_", " ").Split('=');
+                if (split.Length > 1)
+                {
+                    Character c = im.container.characters.Find(i => i.name == split[1]);
+                    if (c != null)
+                    {
+                        Teller.color = c.color;
+                        Teller.text = split[1];
+                    }
+                }
+                else Teller.text = "";
             }
         }
         ++i;

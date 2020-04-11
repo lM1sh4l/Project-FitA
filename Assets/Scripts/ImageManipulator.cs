@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Globalization;
 
 public class ImageManipulator : MonoBehaviour
 {
@@ -12,16 +13,19 @@ public class ImageManipulator : MonoBehaviour
     {
         foreach (var c in container.characters)
         {
-            GameObject go = new GameObject();
+            if (c.states.Count > 0)
+            {
+                GameObject go = new GameObject();
 
-            SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
-            SceneChar sc = go.AddComponent<SceneChar>();
+                SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
+                SceneChar sc = go.AddComponent<SceneChar>();
 
-            go.name = c.name;
-            sc.container = container;
-            sc.materials = materials;
+                go.name = c.name;
+                sc.container = container;
+                sc.materials = materials;
 
-            sceneChars.Add(go.name, sc);
+                sceneChars.Add(go.name, sc);
+            }
         }
     }
 
@@ -31,46 +35,46 @@ public class ImageManipulator : MonoBehaviour
         SceneChar character = sceneChars[parameters[0]];
         Vector3 pos = Camera.main.WorldToViewportPoint(character.transform.position) - Vector3.one / 2;
         float velocity = 1, speed = 1;
-        SceneChar.curveType mCurve = SceneChar.curveType.Constant, sCurve = SceneChar.curveType.Constant;
-        string sprite = character.inverseEmotions[character.sr.sprite];
+        string sprite = character.inverseEmotions[character.sr.sprite], mCurve = "Constant", sCurve = "Constant";
         int mat = 0;
 
         if (parameters.Length > 1)
             for (int i = 1; i < parameters.Length; ++i)
             {
-                switch (parameters[i][0])
+                string[] p = parameters[i].Split('=');
+                switch (p[0])
                 {
                     //Replace
-                    case 'x':
-                        pos.x = float.Parse(parameters[i].Remove(0, 1).Replace('.', ','));
+                    case "x":
+                        pos.x = float.Parse(p[1], CultureInfo.InvariantCulture.NumberFormat);
                         break;
-                    case 'y':
-                        pos.y = float.Parse(parameters[i].Remove(0, 1).Replace('.', ','));
+                    case "y":
+                        pos.y = float.Parse(p[1], CultureInfo.InvariantCulture.NumberFormat);
                         break;
-                    case 'z':
-                        pos.z = float.Parse(parameters[i].Remove(0, 1).Replace('.', ','));
+                    case "z":
+                        pos.z = float.Parse(p[1], CultureInfo.InvariantCulture.NumberFormat);
                         break;
-                    case 'v':
-                        velocity = float.Parse(parameters[i].Remove(0, 1).Replace('.', ','));
+                    case "moveSpeed":
+                        velocity = float.Parse(p[1], CultureInfo.InvariantCulture.NumberFormat);
                         break;
-                    case 't':
-                        mCurve = SceneChar.stringToEnum(parameters[i].Remove(0, 1));
+                    case "moveCurve":
+                        mCurve = p[1];
                         break;
-                    case 'f':
+                    case "flip":
                         character.sr.flipX = !character.sr.flipX;
                         break;
                     //SpriteChanges
-                    case 's':
-                        speed = float.Parse(parameters[i].Remove(0, 1).Replace('.', ','));
+                    case "changeSpeed":
+                        speed = float.Parse(p[1], CultureInfo.InvariantCulture.NumberFormat);
                         break;
-                    case 'i':
-                        sprite = parameters[i].Remove(0, 1);
+                    case "image":
+                        sprite = p[1];
                         break;
-                    case 'm':
-                        mat = int.Parse(parameters[i].Remove(0, 1));
+                    case "material":
+                        mat = int.Parse(p[1]);
                         break;
-                    case 'a':
-                        sCurve = SceneChar.stringToEnum(parameters[i].Remove(0, 1));
+                    case "changeCurve":
+                        sCurve = p[1];
                         break;
                     default:
                         break;

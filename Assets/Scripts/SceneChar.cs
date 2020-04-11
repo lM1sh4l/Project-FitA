@@ -23,8 +23,8 @@ public class SceneChar : MonoBehaviour
         character = container.characters.ToList().Find(i => name == i.name);
         foreach (var state in character.states)
         {
-            inverseEmotions.Add(state.sprite, state.name);
             emotions.Add(state.name, state.sprite);
+            inverseEmotions.Add(state.sprite, state.name);
         }
         sr.sprite = character.states[0].sprite;
         transform.position = Vector3.right * 100;
@@ -37,9 +37,9 @@ public class SceneChar : MonoBehaviour
         Linear
     }
 
-    public IEnumerator Replace(Vector3 viewportPos, float speed = 1, curveType curve = curveType.Constant)
+    public IEnumerator Replace(Vector3 viewportPos, float speed = 1, string curve = "Constant")
     {
-        AnimationCurve animationCurve = enumToCurve(curve);
+        AnimationCurve animationCurve = enumToCurve(stringToEnum(curve));
 
         Vector3 startPos = transform.position;
         Vector3 targetPos = Camera.main.ViewportToWorldPoint((viewportPos + Vector3.one) * .5f);
@@ -56,13 +56,13 @@ public class SceneChar : MonoBehaviour
         }
     }
 
-    public IEnumerator ChangeSprite(string sprite, int material = 0, curveType curve = curveType.Constant, float speed = 1)
+    public IEnumerator ChangeSprite(string sprite, int material = 0, string curve = "Constant", float speed = 1)
     {
         Sprite s = emotions[sprite];
 
         if (material > 0)
         {
-            AnimationCurve animationCurve = enumToCurve(curve);
+            AnimationCurve animationCurve = enumToCurve(stringToEnum(curve));
             Material mat = materials[material];
             sr.material = mat;
 

@@ -3,13 +3,14 @@
     
     <object name = "russian">
       я пидарас
-      [continue][delay=1]
-      [char( S pider  ,x0 ,z 0, y0)]
+      [continue][char(Spider, x = 0, z = 0, y = 0)]
+      [talker = Spider]
       или ты
-      [char(Spider, s0.02, ihappy, m1, aLinear)]
+      [char(Spider, changeSpeed = 0.02, image = happy, material = 1, changeCurve = Linear)]
       [delay=5]
       хочу пива
-      [char(Spider,f, x-.5,v0.01,tEaseInOut, itired)]
+      [talker = Игрок_ебать]
+      [char(Spider, x = 0.2, moveSpeed = 0.01, moveCurve = EaseInOut, image = tired)]
     </object>
     
     <object name = "english"> 
