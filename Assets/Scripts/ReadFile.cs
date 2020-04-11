@@ -17,13 +17,19 @@ public class ReadFile : MonoBehaviour
     [TextArea(1, 10)]
     public string[] quotes;
 
-    void OnValidate()
+    public void Read()
     {
         TextAsset text = Resources.Load(path) as TextAsset;
         XDocument document = XDocument.Parse(text.text);
         List<XElement> elements = document.Root.Elements("object").ToList();
         XElement element = elements.Find(i => i.Attribute("name").Value == Enum.GetName(typeof(Language), language));
         quotes = element.Value.Split('\n');
+
+        ClearWhitespace();
+    }
+
+    void ClearWhitespace()
+    {
         for (int i = 0; i < quotes.Length; ++i)
         {
             int remove = 0;
