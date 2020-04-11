@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+  <languages>
+    
+    <object name = "russian"> 
+      я пидарас
+      или ты
+    </object>
+    
+    <object name = "english"> 
+      im gay 
+      or u
+    </object>
+    
+  </languages>
